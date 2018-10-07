@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.demoapp.loja.web.model.Order;
+import br.com.demoapp.loja.web.model.Partner;
+import br.com.demoapp.loja.web.model.Product;
 
 @Controller
 public class WebController {
@@ -41,15 +43,15 @@ public class WebController {
     }
 	
 	@RequestMapping("/orders")
-    public String listarArquivos(Model model) {
+    public String getOrders(Model model) {
 	    RestTemplate restTemplate = new RestTemplate();
 	    try {
 		    ResponseEntity<List<Order>> response = restTemplate.exchange(
 		    		pathGatewayOrder, HttpMethod.GET, null, new ParameterizedTypeReference<List<Order>>() {}
 		    );
-		    List<Order> orders = response.getBody();  
-		    if(orders.size() > 0) {
-			    model.addAttribute("orders", orders);		    	
+		    List<Order> result = response.getBody();  
+		    if(result.size() > 0) {
+			    model.addAttribute("orders", result);		    	
 		    }else {
 				model.addAttribute("message", "Nenhum registro encontrado. Tente novamente.");
 		    }
@@ -58,5 +60,45 @@ public class WebController {
 			model.addAttribute("message", "Falha ao buscar registros. Tente novamente.");
 		}
         return "orders";
+    }
+	
+	@RequestMapping("/products")
+    public String getProducts(Model model) {
+	    RestTemplate restTemplate = new RestTemplate();
+	    try {
+		    ResponseEntity<List<Product>> response = restTemplate.exchange(
+		    		pathGatewayProduct, HttpMethod.GET, null, new ParameterizedTypeReference<List<Product>>() {}
+		    );
+		    List<Product> result = response.getBody();  
+		    if(result.size() > 0) {
+			    model.addAttribute("products", result);		    	
+		    }else {
+				model.addAttribute("message", "Nenhum registro encontrado. Tente novamente.");
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("message", "Falha ao buscar registros. Tente novamente.");
+		}
+        return "products";
+    }
+	
+	@RequestMapping("/partners")
+    public String getPartners(Model model) {
+	    RestTemplate restTemplate = new RestTemplate();
+	    try {
+		    ResponseEntity<List<Partner>> response = restTemplate.exchange(
+		    		pathGatewayProduct, HttpMethod.GET, null, new ParameterizedTypeReference<List<Partner>>() {}
+		    );
+		    List<Partner> result = response.getBody();  
+		    if(result.size() > 0) {
+			    model.addAttribute("partners", result);		    	
+		    }else {
+				model.addAttribute("message", "Nenhum registro encontrado. Tente novamente.");
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("message", "Falha ao buscar registros. Tente novamente.");
+		}
+        return "partners";
     }
 }
