@@ -41,9 +41,16 @@ $app->get(
     '/api/order',
     function () {
       $orders = [
-        ['id' => 1, 'status' => 1, 'createdAt' => time(), 'customer' => 1, 'products' => [], 'deliveryTime' => time() * 2 ],
-        ['id' => 2, 'status' => 1, 'createdAt' => time(), 'customer' => 1, 'products' => [], 'deliveryTime' => time() * 2]
-      ];
+        [
+          'id' => 1, 'status' => 1, 'createdAt' => time(), 'customer' => ['id' => 1, 'fullName' => 'fullName1', 'orders' => []],
+          'products' => [ ['id' => 1, 'name' => 'name1', 'price' => 0.0, 'cost' => 0.0, 'validUntil' => time()] ],
+          'deliveryTime' => time() * 2
+        ],
+        [
+          'id' => 2, 'status' => 1, 'createdAt' => time(), 'customer' => ['id' => 1, 'fullName' => 'fullName1', 'orders' => []],
+          'products' => [ ['id' => 1, 'name' => 'name1', 'price' => 0.0, 'cost' => 0.0, 'validUntil' => time()] ],
+          'deliveryTime' => time() * 2 ]
+        ];
       return json_encode($orders);
     }
 );

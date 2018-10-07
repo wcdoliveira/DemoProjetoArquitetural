@@ -1,5 +1,8 @@
 package br.com.demoapp.loja.web.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Partner {
 	
 	private Long id;	
@@ -27,4 +30,14 @@ public class Partner {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
+    public String toString() {
+		 try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "";
+		}
+	 }
 }

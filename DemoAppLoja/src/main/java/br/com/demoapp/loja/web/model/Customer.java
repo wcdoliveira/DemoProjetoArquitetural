@@ -3,6 +3,9 @@ package br.com.demoapp.loja.web.model;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Customer {
 	
 	private Long id;	
@@ -40,4 +43,14 @@ public class Customer {
 	public void setOrders(ArrayList<Order> orders) {
 		this.orders = orders;
 	}
+	
+	@Override
+    public String toString() {
+		 try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "";
+		}
+	 }
 }

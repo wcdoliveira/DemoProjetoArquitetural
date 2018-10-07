@@ -1,5 +1,8 @@
 package br.com.demoapp.loja.web.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class User {
 	
 	private Long id;	
@@ -37,4 +40,14 @@ public class User {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
+	
+	@Override
+    public String toString() {
+		 try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "";
+		}
+	 }
 }

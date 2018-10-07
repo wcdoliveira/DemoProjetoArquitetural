@@ -4,6 +4,9 @@ package br.com.demoapp.loja.web.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Order {
 	
 	private Long id;	
@@ -14,15 +17,6 @@ public class Order {
 	private Date deliveryTime;
 	
 	public Order() {}
-	
-	public Order(Long id, Status status, Date createdAt, Customer customer, ArrayList<Product> products, Date deliveryTime){
-		this.setId(id);
-		this.setStatus(status);
-		this.setCreatedAt(createdAt);
-		this.setCustomer(customer);
-		this.setProducts(products);
-		this.setDeliveryTime(deliveryTime);
-	}
 
 	public Long getId() {
 		return id;
@@ -71,4 +65,14 @@ public class Order {
 	public void setDeliveryTime(Date deliveryTime) {
 		this.deliveryTime = deliveryTime;
 	}
+	
+	@Override
+    public String toString() {
+		 try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "";
+		}
+	 }
 }

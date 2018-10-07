@@ -3,6 +3,9 @@ package br.com.demoapp.loja.web.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Product {
 	
 	private Long id;	
@@ -61,4 +64,14 @@ public class Product {
 	public void setValidUntil(Date validUntil) {
 		this.validUntil = validUntil;
 	}
+	
+	@Override
+    public String toString() {
+		 try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "";
+		}
+	 }
 }
