@@ -1,4 +1,4 @@
-package br.com.wcdoliveira.hotchallenge.web.controller;
+package br.com.demoapp.loja.web.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
