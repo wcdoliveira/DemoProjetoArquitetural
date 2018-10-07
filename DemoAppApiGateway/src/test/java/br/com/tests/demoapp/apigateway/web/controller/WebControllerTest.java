@@ -1,4 +1,4 @@
-package br.com.demoapp.apigateway.web.controller;
+package br.com.tests.demoapp.apigateway.web.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
